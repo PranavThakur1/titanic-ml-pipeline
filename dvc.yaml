@@ -5,3 +5,12 @@ stages:
     - src/data_ingestion.py
     outs:
     - data/raw
+  train_model:
+    cmd: python src/train_model.py
+    deps:
+    - src/train_model.py
+    params:
+    - train.random_state
+    - train.test_size
+    outs:
+    - models/model.pkl
