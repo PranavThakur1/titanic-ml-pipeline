@@ -1,0 +1,31 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/data_ingestion.py
+    deps:
+    - path: src/data_ingestion.py
+      hash: md5
+      md5: af514b4b5a3eb58d7e2851274da5c1f5
+      size: 713
+    outs:
+    - path: data/raw
+      hash: md5
+      md5: 61f23ffd8bb26d47600eb6bf1026e55f.dir
+      size: 92283
+      nfiles: 2
+  train_model:
+    cmd: python src/train_model.py
+    deps:
+    - path: src/train_model.py
+      hash: md5
+      md5: 540e6201ad338d45b8acf9c8bce62463
+      size: 1035
+    params:
+      params.yaml:
+        train.random_state: 42
+        train.test_size: 0.2
+    outs:
+    - path: models/model.pkl
+      hash: md5
+      md5: 6c526075fe77c1221ab4ea72e4d98206
+      size: 488255
