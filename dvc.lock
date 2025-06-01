@@ -29,3 +29,39 @@ stages:
       hash: md5
       md5: 6c526075fe77c1221ab4ea72e4d98206
       size: 488255
+  evaluate_model:
+    cmd: python src/evaluate_model.py
+    deps:
+    - path: models/model.pkl
+      hash: md5
+      md5: 6c526075fe77c1221ab4ea72e4d98206
+      size: 488255
+    - path: src/evaluate_model.py
+      hash: md5
+      md5: 184d05df53d04dc6ee08ebcd7c32447b
+      size: 953
+    outs:
+    - path: metrics.txt
+      hash: md5
+      md5: 7162e7645346f16941a2025de3c95216
+      size: 18
+  predict:
+    cmd: python src/predict.py
+    deps:
+    - path: data/raw/test.csv
+      hash: md5
+      md5: 7719029597bac8103e1ed5f0822b8ac2
+      size: 29389
+    - path: models/model.pkl
+      hash: md5
+      md5: 6c526075fe77c1221ab4ea72e4d98206
+      size: 488255
+    - path: src/predict.py
+      hash: md5
+      md5: a7ddb4684b660638584c6bd7308bbe4d
+      size: 723
+    outs:
+    - path: outputs/predictions.csv
+      hash: md5
+      md5: 574aed15f7b759e7a765510e42d52b67
+      size: 3258

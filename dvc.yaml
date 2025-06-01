@@ -14,3 +14,19 @@ stages:
     - train.test_size
     outs:
     - models/model.pkl
+  evaluate_model:
+    cmd: python src/evaluate_model.py
+    deps:
+    - models/model.pkl
+    - src/evaluate_model.py
+    metrics:
+    - metrics.txt:
+        cache: false
+  predict:
+    cmd: python src/predict.py
+    deps:
+    - data/raw/test.csv
+    - models/model.pkl
+    - src/predict.py
+    outs:
+    - outputs/predictions.csv
